@@ -1,0 +1,16 @@
+#const size = 5.
+
+number(1..size).
+
+x(X,Y,N) :- hint(X,Y,N).
+
+%
+% Latin square: all rows and columns must be different.
+% 
+1 { x(X,Y,N):number(N) } 1 :- number(X),number(Y).
+1 { x(X,Y,N):number(X) } 1 :- number(N),number(Y).
+1 { x(X,Y,N):number(Y) } 1 :- number(N),number(X). 
+
+% all < constraints must be satisfied
+
+:- x(X1,Y1,N1), x(X2,Y2,N2), less_than(X1,Y1, X2,Y2), N1 >= N2.
